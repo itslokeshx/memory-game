@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 
 export default function App() {
   const [pokemon, setPokemon] = useState([]);
+  const [shuffle, setShuffle] = useState(0);
 
   useEffect(() => {
-    fetch("https://pokeapi.co/api/v2/pokemon?limit=10&offset=0")
+    fetch(`https://pokeapi.co/api/v2/pokemon?limit=2&offset=${shuffle}`)
       .then((res) => res.json())
       .then((data) => {
-        // step 1: map over the results and fetch each detail
+
         const promises = data.results.map((p) =>
           fetch(p.url)
             .then((res) => res.json())
@@ -19,12 +20,14 @@ export default function App() {
             })
         );
 
-        // step 2: wait for all fetches to finish
         Promise.all(promises).then((results) => {
           setPokemon(results);
         });
       });
-  }, []);
+  }, [shuffle]);
+function Increment(){
+  setShuffle(shuffle=> shuffle+1)
+}
 
   return (
     <div>
@@ -34,6 +37,10 @@ export default function App() {
           <p>{p.name}</p>
         </div>
       ))}
+
+      <button onClick={Increment} >change! {shuffle}</button>
     </div>
   );
 }
+
+
