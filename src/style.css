@@ -1,0 +1,20 @@
+.pokemonsGrid{
+    display: grid;
+       grid-template-columns:  100px 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px ;
+    grid-template-rows: 150px 150px;
+    
+}
+.pokemons{
+   
+     height: 150px;
+     width: 100px;
+     border: 1px solid black;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     flex-direction: column;
+}
+button {
+    margin-top: 20px;
+    
+}

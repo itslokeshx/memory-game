@@ -5,7 +5,7 @@ export default function App() {
   const [shuffle, setShuffle] = useState(0);
 
   useEffect(() => {
-    fetch(`https://pokeapi.co/api/v2/pokemon?limit=2&offset=${shuffle}`)
+    fetch(`https://pokeapi.co/api/v2/pokemon?limit=24&offset=${shuffle}`)
       .then((res) => res.json())
       .then((data) => {
 
@@ -31,13 +31,14 @@ function Increment(){
 
   return (
     <div>
+        <div className="pokemonsGrid">
       {pokemon.map((p) => (
-        <div key={p.name}>
+        <div className="pokemons" key={p.name}>
           <img src={p.image} alt={p.name} />
           <p>{p.name}</p>
         </div>
       ))}
-
+</div>
       <button onClick={Increment} >change! {shuffle}</button>
     </div>
   );
