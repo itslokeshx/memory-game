@@ -35,6 +35,7 @@ export default function App() {
   return (
     <div className="app">
       <h1 className="title">Pokémon Shuffle</h1>
+        <button onClick={shufflePokemon}>Shuffle!</button>
       <div className="pokemonsGrid">
         {shuffledPokemon.map((p) => (
           <div className="pokemons" key={p.name}>
@@ -43,7 +44,7 @@ export default function App() {
           </div>
         ))}
       </div>
-      <button onClick={shufflePokemon}>Shuffle!</button>
+    
     </div>
   );
 }
