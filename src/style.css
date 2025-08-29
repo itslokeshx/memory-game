@@ -60,8 +60,37 @@ button {
   border-radius: 6px;
   cursor: pointer;
   transition: background 0.2s;
+  margin-bottom: 30px;
 }
 
 button:hover {
   background-color: #ff002b;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .pokemonsGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .pokemonsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .pokemonsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  button {
+    width: 100%;
+      margin-bottom: 20px;
+  }
 }
