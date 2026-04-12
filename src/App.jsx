@@ -3,6 +3,7 @@ export default function MemoryCard() {
   const [currentScore, setCurrentScore] = useState(0);
   const [highScore, setHighscore] = useState(0);
   const [selectedcards, setselectedcard] = useState([]);
+  const [shuffledPokemon, setShuffledPokemon] = useState([]);
   const [allCards, setallCards] = useState([]);
   useEffect(() => {
     const fetchCards = async () => {
@@ -11,8 +12,16 @@ export default function MemoryCard() {
           "https://pokeapi.co/api/v2/pokemon?limit=12&offset=24",
         );
         const data = await response.json();
-
-        setallCards(data.results);
+        const promises = data.results.map((p) =>
+          fetch(p.url)
+            .then((res) => res.json())
+            .then((details) => ({
+              name: details.name,
+              image: details.sprites.front_default,
+            })),
+        );
+        const results = await Promise.all(promises);
+        setallCards(results);
       } catch (error) {
         console.log(error);
       }
@@ -23,7 +32,10 @@ export default function MemoryCard() {
   return (
     <div>
       {allCards.map((card) => (
-        <div>{card.name}</div>
+        <div key={card.name}>
+          <img src={card.image} />
+          <p> {card.name}</p>
+        </div>
       ))}
     </div>
   );
