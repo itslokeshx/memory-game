@@ -11,13 +11,14 @@ export default function MemoryCard() {
           "https://pokeapi.co/api/v2/pokemon?limit=12&offset=24",
         );
         const data = await response.json();
-        fetchCards(allCards);
+
+        setallCards(data.results);
       } catch (error) {
         console.log(error);
       }
     };
     fetchCards();
-  }, [currentScore]);
+  }, []);
 
   return (
     <div>
