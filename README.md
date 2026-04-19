@@ -1,60 +1,76 @@
-# 🎮 Memory Game
+<div align="center">
+  <h1>🎮 Pokémon Memory Game</h1>
+  <p>A sleek, premium, and fully responsive memory card game built with React & Vite.</p>
 
-A simple and fun memory card game built with React and Vite. Test your memory by clicking on Pokémon cards without repeating any! The game fetches real Pokémon data from PokéAPI and shuffles the cards after each click.
+  [![Play Now](https://img.shields.io/badge/Play_Now-Live_Demo-blue?style=for-the-badge&logo=vercel)](https://memory-card-zeta-woad.vercel.app/)
+</div>
+
+<br />
+
+Test your memory by clicking on Pokémon cards without repeating any! The game fetches real Pokémon data from the PokéAPI and automatically shuffles the board after every turn. Packed with slick animations and a gorgeous dark-mode UI.
 
 > 📚 **Part of [The Odin Project](https://www.theodinproject.com/)** - React Course Challenge
 
-## 🌐 Live Demo
-
-**[Play Now →](https://memory-card-zeta-woad.vercel.app/)**
+---
 
 ## ✨ Features
 
-- 🎲 **Dynamic Card Shuffling** - Cards reshuffle after every click
-- 🌐 **Real-time API Integration** - Fetches Pokémon data from PokéAPI
-- ⚡ **Fast Performance** - Built with Vite for lightning-fast development
-- 🎨 **Clean UI** - Minimal and responsive design
-- 🔄 **React Hooks** - Modern React with useState and useEffect
+- 🎚️ **Dynamic Difficulty Levels** - Choose between Easy (8 cards), Medium (12 cards), or Hard (16 cards).
+- 🎨 **Premium UI/UX design** - A gorgeous, native-feeling dark mode interface inspired by macOS and Notion.
+- ⚡ **Fluid Animations** - Smooth grid-resizing, fade-ins, and staggered waterfall card entrance animations.
+- 🎲 **Advanced Shuffling** - Uses the Fisher-Yates algorithm for perfectly randomized board shuffling after every click.
+- 📱 **Fully Responsive** - Flawlessly adapts grids and sizes from large desktop monitors down to mobile screens without breaking.
+- 🌐 **Real-time API Integration** - Fetches dynamic high-quality Pokémon sprites on the fly from [PokéAPI](https://pokeapi.co/).
 
 ## 🎯 How to Play
 
-1. Click on any Pokémon card to start
-2. The cards will shuffle automatically
-3. Click on a different Pokémon card
-4. Don't click the same card twice!
-5. Try to click all 12 cards without repeating
+1. Choose your difficulty level at the top (Easy, Medium, or Hard).
+2. Click on any Pokémon card to earn a point.
+3. The board will shuffle automatically.
+4. **Don't click the same card twice!** If you do, it's Game Over.
+5. Try to reach the maximum score by clicking every unique card on the board!
 
 ## 🛠️ Tech Stack
 
-- **React 19** - Modern UI library with hooks
-- **Vite 7** - Next-generation frontend tooling
-- **PokéAPI** - RESTful Pokémon API
-- **ESLint** - Code linting and quality
-- **CSS3** - Styling and animations
+- **React** - Modern UI library utilizing `useState` & `useEffect` hooks.
+- **Vite** - Next-generation lightning fast frontend tooling.
+- **PokéAPI** - RESTful API for character data and sprites.
+- **Vanilla CSS3** - Custom CSS Grid / Flexbox layouts with CSS animations, media queries, and root variables.
+
+## 🚀 Running Locally
+
+To run this project on your local machine:
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/yourusername/Memory-game.git
+
+# 2. Navigate into the directory
+cd Memory-game
+
+# 3. Install dependencies
+npm install
+
+# 4. Start the Vite development server
+npm run dev
+```
 
 ## 📁 Project Structure
 
-```
+```text
 Memory-game/
 ├── src/
-│   ├── App.jsx      # Main game component
+│   ├── App.jsx      # Main game logic, state, and API fetching
 │   ├── Main.jsx     # React entry point
-│   └── style.css    # Styling
+│   └── style.css    # Premium dark theme and responsive grids
 ├── index.html       # HTML template
 ├── package.json     # Dependencies
 └── vite.config.js   # Vite configuration
 ```
 
-## 🎮 Game Logic
-
-- Fetches random Pokémon from PokéAPI
-- Uses Fisher-Yates shuffle algorithm for randomization
-- Tracks clicked cards to prevent duplicates
-- Updates score based on correct clicks
-
 ## 🤝 Contributing
 
-Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](../../issues).
+Contributions, issues, and feature requests are welcome! 
 
 1. Fork the project
 2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
@@ -66,7 +82,9 @@ Contributions, issues, and feature requests are welcome! Feel free to check the 
 
 This project is [MIT](./LICENSE) licensed.
 
+<br />
+
 <div align="center">
   <p>Made with ❤️ as part of The Odin Project</p>
-  <p>⭐ Star this repo if you found it helpful!</p>
+  <p>⭐ Star this repo if you found it fun!</p>
 </div>
