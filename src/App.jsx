@@ -6,6 +6,7 @@ export default function MemoryCard() {
   const [highScore, setHighscore] = useState(0);
   const [selectedcards, setselectedcard] = useState([]);
   const [isGameOver, setIsGameOver] = useState(false);
+  const [hasWon, setHasWon] = useState(false);
   const [difficulty, setDifficulty] = useState(8);
   let [shuffledPokemon, setShuffledPokemon] = useState([]);
   const [allCards, setallCards] = useState([]);
@@ -53,6 +54,7 @@ export default function MemoryCard() {
     setselectedcard([]);
     setCurrentScore(0);
     setIsGameOver(false);
+    setHasWon(false);
 
     return () => {
       isActive = false;
@@ -76,9 +78,16 @@ export default function MemoryCard() {
       setIsGameOver(true);
       setHighscore((prev) => (currentScore > prev ? currentScore : prev));
     } else {
+      const newScore = currentScore + 1;
       setselectedcard((prev) => [...prev, card.name]);
-      setCurrentScore((prev) => prev + 1);
-      setallCards(shuffle(allCards));
+      setCurrentScore(newScore);
+
+      if (newScore === difficulty) {
+        setHasWon(true);
+        setHighscore(difficulty);
+      } else {
+        setallCards(shuffle(allCards));
+      }
     }
   }
 
@@ -86,6 +95,7 @@ export default function MemoryCard() {
     setselectedcard([]);
     setCurrentScore(0);
     setIsGameOver(false);
+    setHasWon(false);
     setallCards(shuffle(allCards));
   }
 
@@ -146,11 +156,15 @@ export default function MemoryCard() {
         ))}
       </main>
 
-      {isGameOver && (
+      {(isGameOver || hasWon) && (
         <div className="modal-overlay">
           <div className="modal">
-            <h2>Game Over</h2>
-            <p>You clicked the same Pokémon twice.</p>
+            <h2>{hasWon ? "🎉 You Won! 🎉" : "Game Over"}</h2>
+            <p>
+              {hasWon
+                ? "Perfect memory! You clicked all the Pokémon."
+                : "You clicked the same Pokémon twice."}
+            </p>
             <div className="modal-stats">
               <div className="modal-stat">
                 <span className="modal-stat-label">Score</span>
@@ -158,11 +172,13 @@ export default function MemoryCard() {
               </div>
               <div className="modal-stat">
                 <span className="modal-stat-label">Best</span>
-                <span className="modal-stat-value">{highScore}</span>
+                <span className="modal-stat-value">
+                  {hasWon ? difficulty : highScore}
+                </span>
               </div>
             </div>
             <button className="restart-btn" onClick={resetGame}>
-              Try Again
+              {hasWon ? "Play Again" : "Try Again"}
             </button>
           </div>
         </div>
