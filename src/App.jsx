@@ -13,6 +13,17 @@ export default function MemoryCard() {
   const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
+    const savedHighScore = localStorage.getItem("memoryGameHighScore");
+    if (savedHighScore) {
+      setHighscore(parseInt(savedHighScore, 10));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("memoryGameHighScore", highScore);
+  }, [highScore]);
+
+  useEffect(() => {
     let isActive = true;
     const fetchCards = async () => {
       setIsAnimating(true);
