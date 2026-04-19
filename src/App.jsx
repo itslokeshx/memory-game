@@ -103,7 +103,10 @@ export default function MemoryCard() {
         </div>
       </header>
 
-      <main className="cards-grid">
+      <main
+        className="cards-grid"
+        style={{ gridTemplateColumns: `repeat(${difficulty / 2}, 1fr)` }}
+      >
         {allCards.map((card) => (
           <div
             key={card.name}

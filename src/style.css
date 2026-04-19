@@ -140,6 +140,7 @@ body {
 /* ── Cards Grid ── */
 .cards-grid {
   display: grid;
+  /* Columns dynamically set via React based on difficulty! Defaulting to 4 below just in case */
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
   width: 100%;
@@ -403,8 +404,11 @@ body {
     font-size: 1.2rem;
   }
   .cards-grid {
-    grid-template-columns: repeat(4, 1fr);
+    /* Responsive dynamic grid, will let inline style override unless we force it or use vars. 
+       Usually cards get too small on mobile if 8 columns. We handle it with horizontal scroll or let it wrap. */
     gap: 0.65rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
   }
   .card {
     padding: 1rem 0.5rem;
