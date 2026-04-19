@@ -8,6 +8,7 @@ export default function MemoryCard() {
   const [isGameOver, setIsGameOver] = useState(false);
   let [shuffledPokemon, setShuffledPokemon] = useState([]);
   const [allCards, setallCards] = useState([]);
+
   useEffect(() => {
     const fetchCards = async () => {
       try {
@@ -31,6 +32,7 @@ export default function MemoryCard() {
     };
     fetchCards();
   }, []);
+
   function shuffle(array) {
     shuffledPokemon = [...array];
     for (let i = shuffledPokemon.length - 1; i > 0; i--) {
@@ -42,6 +44,7 @@ export default function MemoryCard() {
     }
     return shuffledPokemon;
   }
+
   function handleClick(card) {
     if (selectedcards.includes(card.name)) {
       setIsGameOver(true);
@@ -49,7 +52,6 @@ export default function MemoryCard() {
     } else {
       setselectedcard((prev) => [...prev, card.name]);
       setCurrentScore((prev) => prev + 1);
-
       setallCards(shuffle(allCards));
     }
   }
@@ -64,13 +66,14 @@ export default function MemoryCard() {
   return (
     <div className="game-container">
       <header className="game-header">
-        <h1>Pokemon Memory Game</h1>
+        <h1>Memory Game</h1>
         <div className="scoreboard">
           <div className="score">
-            Score: <span>{currentScore}</span>
+            Score <span>{currentScore}</span>
           </div>
+          <div className="score-divider" />
           <div className="score">
-            High Score: <span>{highScore}</span>
+            Best <span>{highScore}</span>
           </div>
         </div>
       </header>
@@ -91,9 +94,18 @@ export default function MemoryCard() {
       {isGameOver && (
         <div className="modal-overlay">
           <div className="modal">
-            <h2>Game Over!</h2>
-            <p>You clicked the same Pokemon twice.</p>
-            <p className="final-score">Your Score: {currentScore}</p>
+            <h2>Game Over</h2>
+            <p>You clicked the same Pokémon twice.</p>
+            <div className="modal-stats">
+              <div className="modal-stat">
+                <span className="modal-stat-label">Score</span>
+                <span className="modal-stat-value">{currentScore}</span>
+              </div>
+              <div className="modal-stat">
+                <span className="modal-stat-label">Best</span>
+                <span className="modal-stat-value">{highScore}</span>
+              </div>
+            </div>
             <button className="restart-btn" onClick={resetGame}>
               Try Again
             </button>
