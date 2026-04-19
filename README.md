@@ -1,6 +1,6 @@
 <div align="center">
   <h1>Pokémon Memory Game</h1>
-  <p>A memory card game built with React and Vite.</p>
+  <p>Pokémon Memory Game: Test your memory by matching Pokémon cards in this React/Vite web app with difficulty levels and persistent high scores.</p>
 
 [![Play Now](https://img.shields.io/badge/Play_Now-Live_Demo-blue?style=for-the-badge&logo=vercel)](https://memory-card-zeta-woad.vercel.app/)
 
