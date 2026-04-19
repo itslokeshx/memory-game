@@ -5,6 +5,7 @@ export default function MemoryCard() {
   const [currentScore, setCurrentScore] = useState(0);
   const [highScore, setHighscore] = useState(0);
   const [selectedcards, setselectedcard] = useState([]);
+  const [isGameOver, setIsGameOver] = useState(false);
   let [shuffledPokemon, setShuffledPokemon] = useState([]);
   const [allCards, setallCards] = useState([]);
   useEffect(() => {
@@ -43,9 +44,7 @@ export default function MemoryCard() {
   }
   function handleClick(card) {
     if (selectedcards.includes(card.name)) {
-      alert("you lost!");
-      setselectedcard([]);
-      setCurrentScore(0);
+      setIsGameOver(true);
       setHighscore((prev) => (currentScore > prev ? currentScore : prev));
     } else {
       setselectedcard((prev) => [...prev, card.name]);
@@ -54,6 +53,14 @@ export default function MemoryCard() {
       setallCards(shuffle(allCards));
     }
   }
+
+  function resetGame() {
+    setselectedcard([]);
+    setCurrentScore(0);
+    setIsGameOver(false);
+    setallCards(shuffle(allCards));
+  }
+
   return (
     <div className="game-container">
       <header className="game-header">
@@ -80,6 +87,19 @@ export default function MemoryCard() {
           </div>
         ))}
       </main>
+
+      {isGameOver && (
+        <div className="modal-overlay">
+          <div className="modal">
+            <h2>Game Over!</h2>
+            <p>You clicked the same Pokemon twice.</p>
+            <p className="final-score">Your Score: {currentScore}</p>
+            <button className="restart-btn" onClick={resetGame}>
+              Try Again
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
