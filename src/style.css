@@ -55,6 +55,8 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 1.25rem 0;
+  flex-wrap: wrap;
+  gap: 1rem;
   border-bottom: 1px solid var(--border);
   margin-bottom: 3rem;
 }
@@ -66,6 +68,39 @@ body {
   font-style: italic;
   color: var(--text);
   letter-spacing: -0.02em;
+}
+
+.difficulty-controls {
+  display: flex;
+  gap: 0.5rem;
+  background: var(--bg-elevated);
+  padding: 0.25rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.diff-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  padding: 0.35rem 0.75rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  font-family: "Geist Mono", monospace;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.diff-btn:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.diff-btn.active {
+  background: var(--text);
+  color: var(--bg);
+  pointer-events: none;
 }
 
 .scoreboard {

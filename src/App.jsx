@@ -6,6 +6,7 @@ export default function MemoryCard() {
   const [highScore, setHighscore] = useState(0);
   const [selectedcards, setselectedcard] = useState([]);
   const [isGameOver, setIsGameOver] = useState(false);
+  const [difficulty, setDifficulty] = useState(16); // 8 = Easy, 12 = Medium, 16 = Hard
   let [shuffledPokemon, setShuffledPokemon] = useState([]);
   const [allCards, setallCards] = useState([]);
 
@@ -13,7 +14,7 @@ export default function MemoryCard() {
     const fetchCards = async () => {
       try {
         const response = await fetch(
-          "https://pokeapi.co/api/v2/pokemon?limit=12&offset=24",
+          `https://pokeapi.co/api/v2/pokemon?limit=${difficulty}&offset=24`,
         );
         const data = await response.json();
         const promises = data.results.map((p) =>
@@ -31,7 +32,11 @@ export default function MemoryCard() {
       }
     };
     fetchCards();
-  }, []);
+    // Reset game completely when difficulty changes
+    setselectedcard([]);
+    setCurrentScore(0);
+    setIsGameOver(false);
+  }, [difficulty]);
 
   function shuffle(array) {
     shuffledPokemon = [...array];
@@ -67,6 +72,26 @@ export default function MemoryCard() {
     <div className="game-container">
       <header className="game-header">
         <h1>Memory Game</h1>
+        <div className="difficulty-controls">
+          <button
+            className={`diff-btn ${difficulty === 8 ? "active" : ""}`}
+            onClick={() => setDifficulty(8)}
+          >
+            Easy
+          </button>
+          <button
+            className={`diff-btn ${difficulty === 12 ? "active" : ""}`}
+            onClick={() => setDifficulty(12)}
+          >
+            Medium
+          </button>
+          <button
+            className={`diff-btn ${difficulty === 16 ? "active" : ""}`}
+            onClick={() => setDifficulty(16)}
+          >
+            Hard
+          </button>
+        </div>
         <div className="scoreboard">
           <div className="score">
             Score <span>{currentScore}</span>
