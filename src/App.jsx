@@ -6,7 +6,7 @@ export default function MemoryCard() {
   const [highScore, setHighscore] = useState(0);
   const [selectedcards, setselectedcard] = useState([]);
   const [isGameOver, setIsGameOver] = useState(false);
-  const [difficulty, setDifficulty] = useState(16); // 8 = Easy, 12 = Medium, 16 = Hard
+  const [difficulty, setDifficulty] = useState(8); // 8 = Easy, 12 = Medium, 16 = Hard
   let [shuffledPokemon, setShuffledPokemon] = useState([]);
   const [allCards, setallCards] = useState([]);
   const [isAnimating, setIsAnimating] = useState(false);
