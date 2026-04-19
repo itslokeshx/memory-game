@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import "./style.css";
+
 export default function MemoryCard() {
   const [currentScore, setCurrentScore] = useState(0);
   const [highScore, setHighscore] = useState(0);
@@ -30,13 +32,27 @@ export default function MemoryCard() {
   }, []);
 
   return (
-    <div>
-      {allCards.map((card) => (
-        <div key={card.name}>
-          <img src={card.image} />
-          <p> {card.name}</p>
+    <div className="game-container">
+      <header className="game-header">
+        <h1>Pokemon Memory Game</h1>
+        <div className="scoreboard">
+          <div className="score">
+            Score: <span>{currentScore}</span>
+          </div>
+          <div className="score">
+            High Score: <span>{highScore}</span>
+          </div>
         </div>
-      ))}
+      </header>
+
+      <main className="cards-grid">
+        {allCards.map((card) => (
+          <div key={card.name} className="card">
+            <img src={card.image} alt={card.name} />
+            <p className="card-name">{card.name}</p>
+          </div>
+        ))}
+      </main>
     </div>
   );
 }
