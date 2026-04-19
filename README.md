@@ -47,7 +47,7 @@ Memory-game/
 
 ## 🎮 Game Logic
 
-- Fetches 12 random Pokémon from PokéAPI
+- Fetches random Pokémon from PokéAPI
 - Uses Fisher-Yates shuffle algorithm for randomization
 - Tracks clicked cards to prevent duplicates
 - Updates score based on correct clicks

@@ -48,6 +48,7 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 0;
+  flex: 1;
 }
 
 /* ── Header ── */
@@ -60,7 +61,7 @@ body {
   flex-wrap: wrap;
   gap: 1rem;
   border-bottom: 1px solid var(--border);
-  margin-bottom: 3rem;
+  margin-bottom: auto;
 }
 
 .game-header h1 {
@@ -154,18 +155,33 @@ body {
   display: grid;
   gap: 1.5rem;
   width: 100%;
+  margin-bottom: auto;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.grid-fade-out {
+  opacity: 0;
+  transform: scale(0.98);
+}
+
+.grid-fade-in {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .grid-8 {
   grid-template-columns: repeat(4, 1fr);
+  max-width: 800px;
 }
 
 .grid-12 {
   grid-template-columns: repeat(6, 1fr);
+  max-width: 1100px;
 }
 
 .grid-16 {
   grid-template-columns: repeat(8, 1fr);
+  max-width: 1400px;
 }
 
 /* ── Card ── */
@@ -426,10 +442,12 @@ body {
 
 @media (max-width: 600px) {
   .game-container {
-    padding: 1.25rem 1rem 3rem;
+    padding: 1rem 0.5rem 1rem;
+    gap: 1rem;
   }
   .game-header {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem 0;
   }
   .game-header h1 {
     font-size: 1.2rem;
