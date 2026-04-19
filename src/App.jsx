@@ -6,7 +6,7 @@ export default function MemoryCard() {
   const [highScore, setHighscore] = useState(0);
   const [selectedcards, setselectedcard] = useState([]);
   const [isGameOver, setIsGameOver] = useState(false);
-  const [difficulty, setDifficulty] = useState(8); // 8 = Easy, 12 = Medium, 16 = Hard
+  const [difficulty, setDifficulty] = useState(8);
   let [shuffledPokemon, setShuffledPokemon] = useState([]);
   const [allCards, setallCards] = useState([]);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -14,9 +14,8 @@ export default function MemoryCard() {
   useEffect(() => {
     let isActive = true;
     const fetchCards = async () => {
-      setIsAnimating(true); // Start fade-out
+      setIsAnimating(true);
 
-      // Fetch cards safely
       const fetchPromise = fetch(
         `https://pokeapi.co/api/v2/pokemon?limit=${difficulty}&offset=24`,
       )
@@ -34,14 +33,12 @@ export default function MemoryCard() {
           ),
         );
 
-      // Force the system to wait *at least* 400ms for the CSS fade-out animation to finish shrinking/hiding the grids
       const animationDelay = new Promise((resolve) => setTimeout(resolve, 400));
 
       try {
         const [results] = await Promise.all([fetchPromise, animationDelay]);
         if (isActive) {
-          setallCards(results); // Mount new cards invisibly
-          // Allow DOM to register the new dimensions before firing fade-in
+          setallCards(results);
           setTimeout(() => {
             if (isActive) setIsAnimating(false);
           }, 50);
@@ -53,7 +50,6 @@ export default function MemoryCard() {
     };
 
     fetchCards();
-    // Reset game completely when difficulty changes
     setselectedcard([]);
     setCurrentScore(0);
     setIsGameOver(false);
