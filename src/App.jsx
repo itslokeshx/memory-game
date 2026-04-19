@@ -31,6 +31,17 @@ export default function MemoryCard() {
     fetchCards();
   }, []);
 
+  function handleClick(card) {
+    if (selectedcards.includes(card.name)) {
+      alert("you lost!");
+      setselectedcard([]);
+      setCurrentScore(0);
+      setHighscore((prev) => currentScore);
+    } else {
+      setselectedcard((prev) => [...prev, card.name]);
+      setCurrentScore((prev) => prev + 1);
+    }
+  }
   return (
     <div className="game-container">
       <header className="game-header">
@@ -47,7 +58,11 @@ export default function MemoryCard() {
 
       <main className="cards-grid">
         {allCards.map((card) => (
-          <div key={card.name} className="card">
+          <div
+            key={card.name}
+            className="card"
+            onClick={() => handleClick(card)}
+          >
             <img src={card.image} alt={card.name} />
             <p className="card-name">{card.name}</p>
           </div>
