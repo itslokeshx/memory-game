@@ -39,7 +39,7 @@ body {
 
 /* ── Layout ── */
 .game-container {
-  max-width: 860px;
+  max-width: 1400px;
   width: 100%;
   padding: 2.5rem 2rem 4rem;
   display: flex;
@@ -142,8 +142,10 @@ body {
   display: grid;
   /* Columns dynamically set via React based on difficulty! Defaulting to 4 below just in case */
   grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
-  width: 100%;
+  gap: 1.5rem;
+  width: 100vw;
+  max-width: 100%;
+  padding: 0 2rem;
 }
 
 /* ── Card ── */
