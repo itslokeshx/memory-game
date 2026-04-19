@@ -5,7 +5,7 @@ export default function MemoryCard() {
   const [currentScore, setCurrentScore] = useState(0);
   const [highScore, setHighscore] = useState(0);
   const [selectedcards, setselectedcard] = useState([]);
-  const [shuffledPokemon, setShuffledPokemon] = useState([]);
+  let [shuffledPokemon, setShuffledPokemon] = useState([]);
   const [allCards, setallCards] = useState([]);
   useEffect(() => {
     const fetchCards = async () => {
@@ -30,16 +30,28 @@ export default function MemoryCard() {
     };
     fetchCards();
   }, []);
-
+  function shuffle(array) {
+    shuffledPokemon = [...array];
+    for (let i = shuffledPokemon.length - 1; i > 0; i--) {
+      let random = Math.floor(Math.random() * (i + 1));
+      [shuffledPokemon[i], shuffledPokemon[random]] = [
+        shuffledPokemon[random],
+        shuffledPokemon[i],
+      ];
+    }
+    return shuffledPokemon;
+  }
   function handleClick(card) {
     if (selectedcards.includes(card.name)) {
       alert("you lost!");
       setselectedcard([]);
       setCurrentScore(0);
-      setHighscore((prev) => currentScore);
+      setHighscore((prev) => (currentScore > prev ? currentScore : prev));
     } else {
       setselectedcard((prev) => [...prev, card.name]);
       setCurrentScore((prev) => prev + 1);
+
+      setallCards(shuffle(allCards));
     }
   }
   return (
