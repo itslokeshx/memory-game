@@ -13,7 +13,7 @@ export default function MemoryCard() {
     const fetchCards = async () => {
       try {
         const response = await fetch(
-          "https://pokeapi.co/api/v2/pokemon?limit=9&offset=24",
+          "https://pokeapi.co/api/v2/pokemon?limit=12&offset=24",
         );
         const data = await response.json();
         const promises = data.results.map((p) =>
